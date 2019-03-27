@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { refreshDescendantViews } from '@angular/core/src/render3/instructions';
 
 @Component({
-  selector: 'nga-stars',
   templateUrl: './stars.component.html',
-  styleUrls: ['./stars.component.css']
+  styleUrls: ['./stars.component.css'],
+  selector: 'nga-stars'
 })
 export class StarsComponent implements OnInit {
-
-  constructor() { }
+  @Input() count = 5;
+  @Input() rating = 0;
+  stars: boolean[] = [];
 
   ngOnInit() {
+    for (let i = 1; i <= this.count; i++) {
+      this.stars.push(i > this.rating); // push true or false
+    }
   }
-
 }
